@@ -13,7 +13,7 @@ MCU = atxmega256d3
 F_CPU = 32000000
 
 # DFLL for better stability
-USE_DFLL = no
+USE_DFLL = yes
 
 # Programmer settings
 OVERRIDE_AVRDUDE_PROGRAMMER = yes
