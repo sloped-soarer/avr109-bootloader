@@ -406,8 +406,8 @@ typedef uint32_t ADDR_T;
 #include "eeprom_driver.h"
 #include "uart.h"
 #include "i2c_master.h"
-#include "watchdog.h"
-#include "api.h"
+//#include "watchdog.h"
+//#include "api.h"
 
 #ifndef __AVR_XMEGA__
 #include <avr/wdt.h>
