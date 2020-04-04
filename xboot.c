@@ -99,7 +99,7 @@ protected = 1;
   }
 
 #if (F_CPU != 32000000 && F_CPU != 2000000)
-#error Oscilator can only be 2 or 32 MHz.
+#error Oscillator can only be 2 or 32 MHz.
 #endif // F_CPU
 
 #if F_CPU == 2000000
@@ -463,7 +463,12 @@ protected = 1;
 
       EEPROM_write_byte(address, get_char() );
 
+#if !defined (USE_FRAM_EE)
+      eeprom_busy_wait();
+#endif
+
       address++;
+
       send_char(REPLY_ACK);
     }
     // Read EEPROM memory
@@ -614,7 +619,7 @@ protected = 1;
     // Wait for any lingering SPM instructions to finish
     Flash_WaitForSPM();
 
-    // End of bootloader main loop
+  // End of bootloader main loop
   }
 
   // Bootloader exit section
@@ -938,6 +943,7 @@ uint16_t crc16_block(uint32_t start, uint32_t length) {
 }
 
 
+#ifdef ENABLE_API
 void install_firmware() {
   uint16_t crc;
   uint16_t crc2;
@@ -981,4 +987,4 @@ void install_firmware() {
     xboot_app_temp_erase();
   }
 }
-
+#endif
